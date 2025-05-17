@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_mentor"
-        android:name="com.yusufyilmaz00.edulai.ui.mentor.MentorFragment"
-        android:label="Koç"
-        tools:layout="@layout/fragment_mentor" />
+        android:id="@+id/navigation_analyze"
+        android:name="com.yusufyilmaz00.edulai.ui.analyze.AnalyzeFragment"
+        android:label="Analiz"
+        tools:layout="@layout/fragment_analyze" />
 
     <fragment
         android:id="@+id/navigation_upload"

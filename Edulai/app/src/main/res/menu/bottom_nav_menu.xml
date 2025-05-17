@@ -7,9 +7,9 @@
         android:title="Ana Sayfa" />
 
     <item
-        android:id="@+id/navigation_mentor"
+        android:id="@+id/navigation_analyze"
         android:icon="@drawable/ic_mentor_brain"
-        android:title="Koç" />
+        android:title="HocAI" />
 
     <item
         android:id="@+id/navigation_upload"

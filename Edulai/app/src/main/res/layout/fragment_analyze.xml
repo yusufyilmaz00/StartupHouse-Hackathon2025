@@ -10,7 +10,7 @@
         android:id="@+id/textView_mentor.xml"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mentor Sayfası"
+        android:text="Analiz Sayfası"
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#000000"/>

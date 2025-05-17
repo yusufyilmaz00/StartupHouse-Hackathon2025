@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         // 5 sekmeli navigation yapılandırması
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home,
-                R.id.navigation_mentor,
+                R.id.navigation_analyze,
                 R.id.navigation_upload,
                 R.id.navigation_progress,
                 R.id.navigation_profile
