@@ -81,7 +81,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_ask_teacher"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="108dp"
             android:layout_marginBottom="24dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_ask_title"
                     android:layout_marginTop="8dp"
-                    android:text="Yapay zekaya anlamadığın soruyu sor, detaylı çözsün."
+                    android:text="Yapay zekaya anlamadığın soruyu sor,detaylı çözsün."
                     android:textSize="12sp"
                     android:textColor="#444444" />
 
@@ -129,8 +129,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:backgroundTint="#DDEFFF">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -160,8 +161,9 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginBottom="24dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:backgroundTint="#DDEFFF">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -189,9 +191,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
-            android:backgroundTint="#F7F7F7"
-            app:cardElevation="2dp"
-            app:cardCornerRadius="12dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:backgroundTint="#DDEFFF">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -211,7 +213,10 @@
             android:clipToPadding="false"
             android:paddingBottom="48dp"
             android:layout_marginBottom="32dp"
-            android:overScrollMode="never" />
+            android:overScrollMode="never"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            android:backgroundTint="#DDEFFF"/>
 
 
 
