@@ -50,6 +50,13 @@ public class HomeFragment extends Fragment {
                     .navigate(R.id.navigation_solution);
         });
 
+        CardView unsolvedShortcut = root.findViewById(R.id.card_unsolved_shortcut);
+
+        unsolvedShortcut.setOnClickListener(v -> {
+            NavHostFragment.findNavController(HomeFragment.this)
+                    .navigate(R.id.navigation_unsolved);
+        });
+
         return root;
     }
 }

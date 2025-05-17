@@ -41,4 +41,9 @@
         android:label="Çözüm Ekranı"
         tools:layout="@layout/fragment_solution" />
 
+    <fragment
+        android:id="@+id/navigation_unsolved"
+        android:name="com.yusufyilmaz00.edulai.ui.solution.UnsolvedQuestionsFragment"
+        android:label="Cevaplanmamış Sorular"
+        tools:layout="@layout/fragment_unsolved_questions" />
 </navigation>
