@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.yusufyilmaz00.edulai.R;
 
@@ -43,11 +44,11 @@ public class HomeFragment extends Fragment {
         });
         */
 
-        /* // Çözümle butonu → örnek olarak Upload sayfasına gidiyor
+         // Çözümle butonu → örnek olarak Upload sayfasına gidiyor
         solveButton.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_upload);
+            NavHostFragment.findNavController(HomeFragment.this)
+                    .navigate(R.id.navigation_solution);
         });
-        */
 
         return root;
     }
