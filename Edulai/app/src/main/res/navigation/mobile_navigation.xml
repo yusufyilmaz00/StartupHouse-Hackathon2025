@@ -46,4 +46,11 @@
         android:name="com.yusufyilmaz00.edulai.ui.solution.UnsolvedQuestionsFragment"
         android:label="Cevaplanmamış Sorular"
         tools:layout="@layout/fragment_unsolved_questions" />
+
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="com.yusufyilmaz00.edulai.ui.chat.ChatFragment"
+        android:label="Chat"
+        tools:layout="@layout/fragment_chat" />
+
 </navigation>
