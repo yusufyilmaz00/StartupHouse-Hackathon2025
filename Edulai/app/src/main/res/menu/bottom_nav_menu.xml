@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Ana Sayfa" />
+
+    <item
+        android:id="@+id/navigation_mentor"
+        android:icon="@drawable/ic_mentor_brain"
+        android:title="Koç" />
+
+    <item
+        android:id="@+id/navigation_upload"
+        android:icon="@drawable/ic_upload_question"
+        android:title="Soru Yükle" />
+
+    <item
+        android:id="@+id/navigation_progress"
+        android:icon="@drawable/ic_progress_chart"
+        android:title="İlerleme" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Profil" />
+
+</menu>
