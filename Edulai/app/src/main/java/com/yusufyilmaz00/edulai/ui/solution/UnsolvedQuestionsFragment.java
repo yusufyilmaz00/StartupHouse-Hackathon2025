@@ -1,5 +1,6 @@
 package com.yusufyilmaz00.edulai.ui.solution;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +70,61 @@ public class UnsolvedQuestionsFragment extends Fragment {
             super(itemView);
             subject = itemView.findViewById(R.id.text_subject);
             question = itemView.findViewById(R.id.text_question);
+        }
+    }
+
+    public static class UnsolvedItem {
+        public final String subject;
+        public final String question;
+
+        public UnsolvedItem(String subject, String question) {
+            this.subject = subject;
+            this.question = question;
+        }
+
+        public String getSubject() {
+            return subject;
+        }
+
+        public String getQuestion() {
+            return question;
+        }
+    }
+
+    public static class UnsolvedAdapter extends RecyclerView.Adapter<UnsolvedQuestionsFragment.QuestionViewHolder> {
+        private final List<UnsolvedItem> items;
+        private final Fragment fragment;
+
+        public UnsolvedAdapter(List<UnsolvedItem> items, Fragment fragment) {
+            this.items = items;
+            this.fragment = fragment;
+        }
+
+
+        @NonNull
+        @Override
+        public UnsolvedQuestionsFragment.QuestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_unsolved_question, parent, false);
+            return new UnsolvedQuestionsFragment.QuestionViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull UnsolvedQuestionsFragment.QuestionViewHolder holder, int position) {
+            UnsolvedItem item = items.get(position);
+            holder.subject.setText(item.subject);
+            holder.question.setText(item.question);
+
+            holder.itemView.setOnClickListener(v -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("subject", item.subject);
+                bundle.putString("question", item.question);
+                NavHostFragment.findNavController(fragment).navigate(R.id.navigation_solution, bundle);
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return items.size();
         }
     }
 }

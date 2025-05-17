@@ -9,9 +9,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:minHeight="72dp">
 
-        <!-- Başlık -->
         <!-- Başlık -->
         <TextView
             android:id="@+id/text_subject"
