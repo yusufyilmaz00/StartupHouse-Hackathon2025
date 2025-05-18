@@ -3,11 +3,15 @@ package com.yusufyilmaz00.edulai.ui.chat;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,8 +24,11 @@ import java.io.IOException;
 
 public class ChatFragment extends Fragment {
 
-    private TextView questionHeader, questionContent, aiResponse1, aiResponse2;
+    private TextView questionHeader, questionContent;
     private ImageView questionImage;
+    private EditText editMessageInput;
+    private ImageButton sendButton;
+    private LinearLayout messageContainer;
 
     public ChatFragment() {}
 
@@ -35,9 +42,10 @@ public class ChatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         questionHeader = view.findViewById(R.id.text_question_header);
         questionContent = view.findViewById(R.id.text_question_content);
-        aiResponse1 = view.findViewById(R.id.text_ai_response);
-        aiResponse2 = view.findViewById(R.id.text_ai_response_2);
         questionImage = view.findViewById(R.id.image_question);
+        editMessageInput = view.findViewById(R.id.edit_message_input);
+        sendButton = view.findViewById(R.id.button_send_message);
+        messageContainer = view.findViewById(R.id.message_container);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -61,12 +69,57 @@ public class ChatFragment extends Fragment {
             }
 
             if (!solveLater) {
-                aiResponse1.setText("Bu sorunun çözümü için önce verilenleri değerlendirelim...");
-                aiResponse2.setText("Çözüm: x + y = 12 denkleminde... Cevap: x = 7, y = 5");
+                // İlk AI mesajı göster
+                addAIMessage("Bu sorunun çözümü için önce verilenleri değerlendirelim...");
+                addAIMessage("Çözüm: x + y = 12 denkleminde... Cevap: x = 7, y = 5");
+
+                // Kullanıcı mesaj girişi aktif hale getir
+                editMessageInput.setEnabled(true);
+                sendButton.setEnabled(true);
+
+                sendButton.setOnClickListener(v -> {
+                    String userMessage = editMessageInput.getText().toString().trim();
+                    if (!userMessage.isEmpty()) {
+                        addUserMessage(userMessage);
+                        editMessageInput.setText("");
+
+                        // Simüle edilmiş AI cevabı
+                        new Handler().postDelayed(() -> {
+                            addAIMessage("Bu soruya başka bir açıdan da bakabiliriz...");
+                        }, 1500);
+                    }
+                });
             } else {
-                aiResponse1.setText("Bu soru daha sonra çözülmek üzere kaydedildi.");
-                aiResponse2.setVisibility(View.GONE);
+                addAIMessage("Bu soru daha sonra çözülmek üzere kaydedildi.");
             }
         }
+    }
+
+    private void addUserMessage(String message) {
+        TextView textView = new TextView(getContext());
+        textView.setText(message);
+        textView.setBackgroundResource(R.drawable.bg_user_message);
+        textView.setTextColor(getResources().getColor(android.R.color.black));
+        textView.setTextSize(16);
+        textView.setPadding(24, 16, 24, 16);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 8, 0, 8);
+        params.gravity = android.view.Gravity.END;
+        textView.setLayoutParams(params);
+        messageContainer.addView(textView);
+    }
+
+    private void addAIMessage(String message) {
+        TextView textView = new TextView(getContext());
+        textView.setText(message);
+        textView.setBackgroundResource(R.drawable.bg_ai_message);
+        textView.setTextColor(getResources().getColor(android.R.color.black));
+        textView.setTextSize(16);
+        textView.setPadding(24, 16, 24, 16);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 8, 0, 8);
+        params.gravity = android.view.Gravity.START;
+        textView.setLayoutParams(params);
+        messageContainer.addView(textView);
     }
 }

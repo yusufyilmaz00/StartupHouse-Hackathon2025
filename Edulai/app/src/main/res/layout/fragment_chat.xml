@@ -1,68 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <!-- Scroll edilebilir mesaj alanı -->
+    <ScrollView
+        android:id="@+id/scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/chat_input_container"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/message_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Soru başlığı -->
+            <TextView
+                android:id="@+id/text_question_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Soru:"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Soru içeriği -->
+            <TextView
+                android:id="@+id/text_question_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Görsel varsa göster -->
+            <ImageView
+                android:id="@+id/image_question"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="24dp"
+                android:visibility="gone"
+                android:background="#DDDDDD" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Sabit mesaj gönderme alanı -->
     <LinearLayout
+        android:id="@+id/chat_input_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="48dp"
+        android:gravity="center_vertical">
 
-        <!-- Soru başlığı -->
-        <TextView
-            android:id="@+id/text_question_header"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/edit_message_input"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Soru:"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp" />
+            android:layout_weight="1"
+            android:hint="Mesaj yaz..."
+            android:enabled="false"
+            android:background="@android:drawable/editbox_background" />
 
-        <!-- Soru içeriği -->
-        <TextView
-            android:id="@+id/text_question_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Görsel varsa göster -->
-        <ImageView
-            android:id="@+id/image_question"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="24dp"
-            android:visibility="gone"
-            android:background="#DDDDDD" />
-
-        <!-- AI cevabı -->
-        <TextView
-            android:id="@+id/text_ai_response"
+        <ImageButton
+            android:id="@+id/button_send_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#E3F2FD"
-            android:padding="12dp"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"
-            android:layout_gravity="start"
-            android:layout_marginEnd="48dp"
-            android:backgroundTintMode="add" />
-
-        <!-- AI cevabı 2 -->
-        <TextView
-            android:id="@+id/text_ai_response_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#E3F2FD"
-            android:padding="12dp"
-            android:textColor="#000000"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp"
-            android:layout_gravity="start"
-            android:layout_marginEnd="48dp" />
-
+            android:src="@android:drawable/ic_menu_send"
+            android:background="@android:color/transparent"
+            android:enabled="false"
+            android:contentDescription="Gönder" />
     </LinearLayout>
-</ScrollView>
+
+</RelativeLayout>
