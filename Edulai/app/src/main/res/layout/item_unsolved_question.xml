@@ -42,7 +42,7 @@
             android:id="@+id/arrow_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@android:drawable/ic_media_next"
+            android:src="@android:drawable/ic_arrow_forward.png"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true" />
 
