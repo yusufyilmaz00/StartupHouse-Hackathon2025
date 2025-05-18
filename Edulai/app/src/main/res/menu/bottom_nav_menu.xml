@@ -9,7 +9,7 @@
     <item
         android:id="@+id/navigation_analyze"
         android:icon="@drawable/ic_mentor_brain"
-        android:title="HocAI" />
+        android:title="Analiz" />
 
     <item
         android:id="@+id/navigation_upload"

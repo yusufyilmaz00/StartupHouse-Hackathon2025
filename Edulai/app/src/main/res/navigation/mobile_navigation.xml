@@ -8,14 +8,8 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.yusufyilmaz00.edulai.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="Anasayfa"
         tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/navigation_analyze"
-        android:name="com.yusufyilmaz00.edulai.ui.analyze.AnalyzeFragment"
-        android:label="Analiz"
-        tools:layout="@layout/fragment_analyze" />
 
     <fragment
         android:id="@+id/navigation_upload"
@@ -63,7 +57,7 @@
     <fragment
         android:id="@+id/navigation_analyze"
         android:name="com.yusufyilmaz00.edulai.ui.analyze.AnalyzeFragment"
-        android:label="Analyze" >
+        android:label="Analiz" >
 
         <action
             android:id="@+id/action_navigation_analyze_to_navigation_quiz"
