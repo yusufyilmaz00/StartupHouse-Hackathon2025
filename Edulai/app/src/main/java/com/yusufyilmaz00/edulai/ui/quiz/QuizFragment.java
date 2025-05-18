@@ -72,12 +72,30 @@ public class QuizFragment extends Fragment {
 
     private void generateDummyQuestions() {
         questionList = new ArrayList<>();
-        questionList.add(new QuizQuestion("Parabol grafiği hangi eksende simetriktir?",
-                new String[]{"X Ekseni", "Y Ekseni", "Z Ekseni", "Orijin"}, 1));
-        questionList.add(new QuizQuestion("Elektrik akımı birimi nedir?",
-                new String[]{"Volt", "Watt", "Amper", "Ohm"}, 2));
-        questionList.add(new QuizQuestion("Matematikte kök içindeki negatif sayı nedir?",
-                new String[]{"Reel", "İmajiner", "Doğal", "Tamsayı"}, 1));
+
+        if (topicName.equalsIgnoreCase("Parabol")) {
+            questionList.add(new QuizQuestion("Parabol grafiği hangi eksende simetriktir?",
+                    new String[]{"X Ekseni", "Y Ekseni", "Z Ekseni", "Orijin"}, 1));
+            questionList.add(new QuizQuestion("Parabol denkleminin genel hali nedir?",
+                    new String[]{"y = ax^2 + bx + c", "y = mx + n", "x = a + by", "y = abx"}, 0));
+            questionList.add(new QuizQuestion("Parabolün tepe noktası nedir?",
+                    new String[]{"x = -b/2a", "x = b/2a", "x = -a/2b", "x = a^2 + b^2"}, 0));
+            questionList.add(new QuizQuestion("Parabolün kolları neye göre yönlenir?",
+                    new String[]{"a'nın işaretine", "b'nin işaretine", "c'nin büyüklüğüne", "abc'nin çarpımına"}, 0));
+            questionList.add(new QuizQuestion("a < 0 ise parabol nasıldır?",
+                    new String[]{"Kollar yukarı", "Kollar aşağı", "Simetrik değil", "Grafik çizilemez"}, 1));
+        } else if (topicName.equalsIgnoreCase("Elektrik Akımı")) {
+            questionList.add(new QuizQuestion("Elektrik akımının birimi nedir?",
+                    new String[]{"Volt", "Watt", "Amper", "Ohm"}, 2));
+            questionList.add(new QuizQuestion("Elektrik akımı ne ile ölçülür?",
+                    new String[]{"Voltmetre", "Ampermetre", "Ohmmetre", "Termometre"}, 1));
+            questionList.add(new QuizQuestion("Direnç arttıkça akım ne olur?",
+                    new String[]{"Artar", "Azalır", "Değişmez", "Sıfır olur"}, 1));
+            questionList.add(new QuizQuestion("V = I * R denkleminde I nedir?",
+                    new String[]{"Gerilim", "Güç", "Akım", "Direnç"}, 2));
+            questionList.add(new QuizQuestion("İletken bir telde elektronlar hangi yönde hareket eder?",
+                    new String[]{"Artıdan eksiye", "Eksiden artıya", "Yukarı", "Aşağı"}, 1));
+        }
     }
 
     private void loadQuestion() {
