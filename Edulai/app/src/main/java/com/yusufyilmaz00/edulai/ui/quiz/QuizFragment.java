@@ -13,9 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.yusufyilmaz00.edulai.R;
-import com.yusufyilmaz00.edulai.data.AppDatabase;
 import com.yusufyilmaz00.edulai.model.QuizQuestion;
-
+import com.yusufyilmaz00.edulai.data.AppDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,97 +98,100 @@ public class QuizFragment extends Fragment {
         }
     }
 
-    private void loadQuestion() {
-        if (currentQuestionIndex >= questionList.size()) {
-            showResults();
-            return;
-        }
+private void loadQuestion() {
+    if (currentQuestionIndex >= questionList.size()) {
+        showResults();
+        return;
+    }
 
-        QuizQuestion q = questionList.get(currentQuestionIndex);
-        textQuestion.setText(q.questionText);
-        for (int i = 0; i < 4; i++) {
-            choiceButtons[i].setText(q.choices[i]);
-            choiceButtons[i].setEnabled(true);
+    QuizQuestion q = questionList.get(currentQuestionIndex);
+    textQuestion.setText(q.questionText);
+    for (int i = 0; i < 4; i++) {
+        choiceButtons[i].setText(q.choices[i]);
+        choiceButtons[i].setEnabled(true);
+        choiceButtons[i].setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
+    }
+    textFeedback.setVisibility(View.GONE);
+    buttonSkip.setEnabled(true);
+    buttonNext.setEnabled(true);
+    selectedChoiceIndex = -1;
+}
+
+private void selectChoice(int index) {
+    selectedChoiceIndex = index;
+    for (int i = 0; i < 4; i++) {
+        if (i == index) {
+            choiceButtons[i].setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light)); // Sarı seçim
+        } else {
             choiceButtons[i].setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
         }
-        textFeedback.setVisibility(View.GONE);
-        buttonSkip.setEnabled(true);
-        buttonNext.setEnabled(true);
-        selectedChoiceIndex = -1;
     }
-
-    private void selectChoice(int index) {
-        selectedChoiceIndex = index;
-        for (int i = 0; i < 4; i++) {
-            if (i == index) {
-                choiceButtons[i].setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light)); // Sarı seçim
-            } else {
-                choiceButtons[i].setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
-            }
-        }
-    }
+}
 
 
-    private void handleSkip() {
-        disableChoices();
+private void handleSkip() {
+    disableChoices();
+    emptyCount++;
+    QuizQuestion current = questionList.get(currentQuestionIndex);
+    showFeedback(false, current.choices[current.correctAnswerIndex]);
+    new Handler().postDelayed(this::nextQuestion, 3000);
+}
+
+private void handleNext() {
+    disableChoices();
+    QuizQuestion current = questionList.get(currentQuestionIndex);
+    if (selectedChoiceIndex == -1) {
         emptyCount++;
-        QuizQuestion current = questionList.get(currentQuestionIndex);
         showFeedback(false, current.choices[current.correctAnswerIndex]);
-        new Handler().postDelayed(this::nextQuestion, 3000);
-    }
-
-    private void handleNext() {
-        disableChoices();
-        QuizQuestion current = questionList.get(currentQuestionIndex);
-        if (selectedChoiceIndex == -1) {
-            emptyCount++;
-            showFeedback(false, current.choices[current.correctAnswerIndex]);
+    } else {
+        boolean correct = (selectedChoiceIndex == current.correctAnswerIndex);
+        if (correct) {
+            correctCount++;
+            choiceButtons[selectedChoiceIndex].setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
         } else {
-            boolean correct = (selectedChoiceIndex == current.correctAnswerIndex);
-            if (correct) {
-                correctCount++;
-                choiceButtons[selectedChoiceIndex].setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
-            } else {
-                wrongCount++;
-                choiceButtons[selectedChoiceIndex].setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
-            }
-            showFeedback(correct, current.choices[current.correctAnswerIndex]);
+            wrongCount++;
+            choiceButtons[selectedChoiceIndex].setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
         }
-        new Handler().postDelayed(this::nextQuestion, 3000);
+        showFeedback(correct, current.choices[current.correctAnswerIndex]);
     }
+    new Handler().postDelayed(this::nextQuestion, 3000);
+}
 
-    private void showFeedback(boolean correct, String correctAnswer) {
-        textFeedback.setText(correct ? "Doğru!" : "Yanlış! Doğru cevap: " + correctAnswer);
-        textFeedback.setVisibility(View.VISIBLE);
+private void showFeedback(boolean correct, String correctAnswer) {
+    textFeedback.setText(correct ? "Doğru!" : "Yanlış! Doğru cevap: " + correctAnswer);
+    textFeedback.setVisibility(View.VISIBLE);
+}
+
+private void disableChoices() {
+    for (Button btn : choiceButtons) btn.setEnabled(false);
+    buttonSkip.setEnabled(false);
+    buttonNext.setEnabled(false);
+}
+
+private void nextQuestion() {
+    currentQuestionIndex++;
+    loadQuestion();
+}
+
+private void showResults() {
+    Button buttonClose = getView().findViewById(R.id.button_close);
+    buttonClose.setVisibility(View.VISIBLE);
+    buttonClose.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
+    // Eğer hata 1 veya daha azsa konuyu analizden sil
+    if ((wrongCount + emptyCount) <= 1) {
+        new Thread(() -> {
+            AppDatabase db = AppDatabase.getInstance(requireContext());
+            db.analyzeTopicDao().deleteByTopicAndLesson(topicName, lessonName);
+        }).start();
     }
+    textQuestion.setVisibility(View.GONE);
+    for (Button btn : choiceButtons) btn.setVisibility(View.GONE);
+    buttonSkip.setVisibility(View.GONE);
+    buttonNext.setVisibility(View.GONE);
+    textFeedback.setVisibility(View.GONE);
 
-    private void disableChoices() {
-        for (Button btn : choiceButtons) btn.setEnabled(false);
-        buttonSkip.setEnabled(false);
-        buttonNext.setEnabled(false);
-    }
-
-    private void nextQuestion() {
-        currentQuestionIndex++;
-        loadQuestion();
-    }
-
-    private void showResults() {
-        // Eğer hata 1 veya daha azsa konuyu analizden sil
-        if ((wrongCount + emptyCount) <= 1) {
-            new Thread(() -> {
-                AppDatabase db = AppDatabase.getInstance(requireContext());
-                db.analyzeTopicDao().deleteByTopicAndLesson(topicName, lessonName);
-            }).start();
-        }
-        textQuestion.setVisibility(View.GONE);
-        for (Button btn : choiceButtons) btn.setVisibility(View.GONE);
-        buttonSkip.setVisibility(View.GONE);
-        buttonNext.setVisibility(View.GONE);
-        textFeedback.setVisibility(View.GONE);
-
-        resultCard.setVisibility(View.VISIBLE);
-        textResultTopic.setText("Ders: " + lessonName + "\nKonu: " + topicName);
-        textResultStats.setText("Doğru: " + correctCount + " | Yanlış: " + wrongCount + " | Boş: " + emptyCount);
-    }
+    resultCard.setVisibility(View.VISIBLE);
+    textResultTopic.setText("Ders: " + lessonName + "\nKonu: " + topicName);
+    textResultStats.setText("Doğru: " + correctCount + " | Yanlış: " + wrongCount + " | Boş: " + emptyCount);
+}
 }
