@@ -120,9 +120,14 @@ public class QuizFragment extends Fragment {
     private void selectChoice(int index) {
         selectedChoiceIndex = index;
         for (int i = 0; i < 4; i++) {
-            choiceButtons[i].setBackgroundColor(getResources().getColor(i == index ? android.R.color.holo_green_light : android.R.color.holo_blue_light));
+            if (i == index) {
+                choiceButtons[i].setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light)); // Sarı seçim
+            } else {
+                choiceButtons[i].setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
+            }
         }
     }
+
 
     private void handleSkip() {
         disableChoices();
@@ -140,7 +145,13 @@ public class QuizFragment extends Fragment {
             showFeedback(false, current.choices[current.correctAnswerIndex]);
         } else {
             boolean correct = (selectedChoiceIndex == current.correctAnswerIndex);
-            if (correct) correctCount++; else wrongCount++;
+            if (correct) {
+                correctCount++;
+                choiceButtons[selectedChoiceIndex].setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
+            } else {
+                wrongCount++;
+                choiceButtons[selectedChoiceIndex].setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
+            }
             showFeedback(correct, current.choices[current.correctAnswerIndex]);
         }
         new Handler().postDelayed(this::nextQuestion, 3000);
