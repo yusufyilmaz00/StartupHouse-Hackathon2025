@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="8dp"
+    android:layout_marginHorizontal="16dp"
+    android:backgroundTint="#F3F6FB"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/text_lesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ders Adı"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#1C1C1C" />
+
+        <TextView
+            android:id="@+id/text_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Konu Adı"
+            android:textSize="14sp"
+            android:textColor="#444444"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/text_mistakes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 kez hata yaptın"
+            android:textSize="14sp"
+            android:textColor="#888888"
+            android:layout_marginTop="4dp"/>
+
+        <Button
+            android:id="@+id/button_repeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tekrar Et"
+            android:backgroundTint="#6C63FF"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
