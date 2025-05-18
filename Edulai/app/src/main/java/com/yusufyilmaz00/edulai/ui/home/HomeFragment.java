@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.yusufyilmaz00.edulai.R;
 import com.yusufyilmaz00.edulai.ui.solution.UnsolvedQuestionsFragment.UnsolvedAdapter;
 import com.yusufyilmaz00.edulai.ui.solution.UnsolvedQuestionsFragment.UnsolvedItem;
@@ -53,8 +52,7 @@ public class HomeFragment extends Fragment {
         latestQuestions.add(new UnsolvedItem("Biyoloji – Genetik", "DNA’daki baz eşleşmeleri nasıl olur?"));
         latestQuestions.add(new UnsolvedItem("Tarih – 20. Yüzyıl", "I. Dünya Savaşı'nın nedenleri nelerdir?"));
 
-        lastUploadedRecycler.setAdapter(new UnsolvedAdapter(latestQuestions, this)); // 'this' bir Fragment
-
+        lastUploadedRecycler.setAdapter(new UnsolvedAdapter(latestQuestions, this));
     }
 
     public static class StatItem {
