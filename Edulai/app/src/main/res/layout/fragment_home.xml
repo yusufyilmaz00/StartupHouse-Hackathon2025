@@ -71,7 +71,7 @@
         <!-- Hocana sor -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_marginVertical="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
@@ -79,7 +79,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:padding="16dp">
 
                 <TextView
@@ -113,7 +113,7 @@
         <!-- Son cevapsız soru -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_marginVertical="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
@@ -121,32 +121,55 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:padding="16dp"
+                android:padding="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
 
+                <!-- Ders - Konu -->
                 <TextView
+                    android:id="@+id/textLessonTopic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Son cevapsız soru: x + y = 12"
+                    android:text="Matematik • Denklem"
+                    android:textStyle="bold"
+                    android:textColor="#1C1C1C"
                     android:textSize="16sp"
-                    android:textColor="#1C1C1C" />
+                    android:layout_marginBottom="2dp" />
 
+                <!-- Soru Metni -->
+                <TextView
+                    android:id="@+id/textLastUnansweredQuestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="x + y = 12, x = 7 ise y kaçtır?"
+                    android:textSize="14sp"
+                    android:textColor="#1C1C1C"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <!-- Buton -->
                 <Button
                     android:id="@+id/button_solve"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="6dp"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="6dp"
                     android:text="Çözümle"
+                    android:textSize="14sp"
                     android:backgroundTint="#6C63FF"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
 
         <!-- Tüm cevapsız sorular -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_marginVertical="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
@@ -156,7 +179,7 @@
                 android:orientation="horizontal"
                 android:padding="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center_vertical">
 
                 <ImageView
@@ -178,20 +201,26 @@
         <!-- Son yüklenen sorular başlığı -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_marginVertical="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="6dp"
             android:backgroundTint="#E9F3FC">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="📘 Son Yüklenen Sorular"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#1C1C1C"
-                android:padding="16dp" />
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="📘 Son Yüklenen Sorular"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1C1C1C" />
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- RecyclerView: Son yüklenen sorular -->

@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="17 Mayıs 2025"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="#666666"
             android:layout_marginBottom="6dp" />
 
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bir üçgende tanjant oranı nasıl bulunur?"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textColor="#333333" />
 
         <!-- Yanlışsa ❗ ikonu -->
@@ -52,8 +52,7 @@
             android:layout_height="20dp"
             android:layout_gravity="end"
             android:layout_marginTop="4dp"
-            android:src="@android:drawable/ic_dialog_alert"
-            android:contentDescription="Incorrect answer"
+            android:src="@drawable/ic_question_red"
             android:visibility="gone" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
