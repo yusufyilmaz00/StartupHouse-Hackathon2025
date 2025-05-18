@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/quiz_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/text_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soru burada"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/button_choice_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:layout_marginVertical="4dp"/>
+
+    <Button
+        android:id="@+id/button_choice_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="B"
+        android:layout_marginVertical="4dp"/>
+
+    <Button
+        android:id="@+id/button_choice_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:layout_marginVertical="4dp"/>
+
+    <Button
+        android:id="@+id/button_choice_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:layout_marginVertical="4dp"/>
+
+    <TextView
+        android:id="@+id/text_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Doğru/yanlış geri bildirimi"
+        android:textColor="#6C63FF"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Boş Geç"
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sonraki"
+        android:layout_marginTop="8dp"/>
+
+
+    <!-- Quiz Sonuç Kartı (başta görünmez) -->
+    <LinearLayout
+        android:id="@+id/result_card"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F3F6FB"
+        android:padding="24dp"
+        android:layout_marginTop="32dp">
+
+        <TextView
+            android:id="@+id/text_result_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Konu: -"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1C1C1C"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/text_result_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doğru: 0 | Yanlış: 0 | Boş: 0"
+            android:textSize="16sp"
+            android:textColor="#444444" />
+    </LinearLayout>
+</LinearLayout>
