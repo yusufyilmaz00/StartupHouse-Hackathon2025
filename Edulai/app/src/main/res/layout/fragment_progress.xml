@@ -1,17 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textView_progress.xml"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="İlerleme Sayfası"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#000000"/>
-</LinearLayout>
+        android:orientation="vertical">
+
+        <!-- 🔵 ÜST KISIM: İstatistikler -->
+        <TextView
+            android:text="İstatistikler"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Soru sayısı kartları -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textTotalQuestions"
+                android:text="Toplam Yüklenen: 120"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/textSolvedQuestions"
+                android:text="Çözülen: 90"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/textTopicCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Farklı Konu: 12"
+                android:textSize="16sp"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/textIncompleteTopics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eksik Konu: 3"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <!-- Dairesel Tamamlanma ve Başarı -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp">
+
+            <!-- Tamamlanma -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ProgressBar
+                    android:id="@+id/completionProgress"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:max="100"
+                    android:progress="70"
+                    android:indeterminate="false" />
+                <TextView
+                    android:id="@+id/completionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tamamlanma: %70"
+                    android:layout_marginTop="4dp"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Başarı -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+                <ProgressBar
+                    android:id="@+id/successProgress"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:max="100"
+                    android:progress="85"
+                    android:indeterminate="false" />
+                <TextView
+                    android:id="@+id/successText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Başarı: %85"
+                    android:layout_marginTop="4dp"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 🟣 KONULAR: Etiketleme -->
+        <TextView
+            android:text="Konular"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/topicTagContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+            <!-- Java tarafından dinamik ekleme yapılacak -->
+        </LinearLayout>
+
+        <!-- 🟡 LİSTE: Çözülen Sorular -->
+        <TextView
+            android:text="Çözülen Sorular"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/solvedQuestionList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            tools:listitem="@layout/item_solved_question" />
+
+    </LinearLayout>
+</ScrollView>
