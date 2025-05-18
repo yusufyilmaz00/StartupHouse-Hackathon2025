@@ -53,4 +53,22 @@
         android:label="Chat"
         tools:layout="@layout/fragment_chat" />
 
+    <fragment
+        android:id="@+id/navigation_quiz"
+        android:name="com.yusufyilmaz00.edulai.ui.quiz.QuizFragment"
+        android:label="Quiz"
+        tools:layout="@layout/fragment_quiz" />
+
+
+    <fragment
+        android:id="@+id/navigation_analyze"
+        android:name="com.yusufyilmaz00.edulai.ui.analyze.AnalyzeFragment"
+        android:label="Analyze" >
+
+        <action
+            android:id="@+id/action_navigation_analyze_to_navigation_quiz"
+            app:destination="@id/navigation_quiz" />
+    </fragment>
+
+
 </navigation>

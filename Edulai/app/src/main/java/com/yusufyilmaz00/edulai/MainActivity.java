@@ -12,7 +12,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.yusufyilmaz00.edulai.data.AnalyzeTopic;
+import com.yusufyilmaz00.edulai.data.AppDatabase;
 import com.yusufyilmaz00.edulai.databinding.ActivityMainBinding;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,12 +43,17 @@ public class MainActivity extends AppCompatActivity {
         
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
 
+        // BACKGROUND THREAD içinde Room verisi çekiyoruz:
+        new Thread(() -> {
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
-        navView.setOnItemReselectedListener(item -> {
-            if (item.getItemId() == R.id.navigation_home) {
-                Log.d("NavigationEvent", "Home butonuna tekrar tıklandı (reselected).");
+            List<AnalyzeTopic> topics = db.analyzeTopicDao().getAll();
+
+            for (AnalyzeTopic topic : topics) {
+                Log.d("AnalyzeDB", topic.lessonName + " - " + topic.topicName);
             }
-        });
+
+        }).start();
         
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
