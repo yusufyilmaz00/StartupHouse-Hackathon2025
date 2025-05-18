@@ -8,5 +8,30 @@
     "topicName": "Elektrik Akımı",
     "lessonName": "Fizik",
     "mistakeCount": 5
+  },
+  {
+    "topicName": "Fotosentez",
+    "lessonName": "Biyoloji",
+    "mistakeCount": 3
+  },
+  {
+    "topicName": "Türkiye'nin Coğrafi Bölgeleri",
+    "lessonName": "Coğrafya",
+    "mistakeCount": 2
+  },
+  {
+    "topicName": "İslamiyet Öncesi Türk Tarihi",
+    "lessonName": "Tarih",
+    "mistakeCount": 6
+  },
+  {
+    "topicName": "İkinci Yeni Şiiri",
+    "lessonName": "Edebiyat",
+    "mistakeCount": 1
+  },
+  {
+    "topicName": "Kimyasal Tepkimeler",
+    "lessonName": "Kimya",
+    "mistakeCount": 4
   }
 ]
