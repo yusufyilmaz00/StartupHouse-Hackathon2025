@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.yusufyilmaz00.edulai.R;
+import com.yusufyilmaz00.edulai.data.AppDatabase;
 import com.yusufyilmaz00.edulai.model.QuizQuestion;
 
 import java.util.ArrayList;
@@ -174,6 +175,13 @@ public class QuizFragment extends Fragment {
     }
 
     private void showResults() {
+        // Eğer hata 1 veya daha azsa konuyu analizden sil
+        if ((wrongCount + emptyCount) <= 1) {
+            new Thread(() -> {
+                AppDatabase db = AppDatabase.getInstance(requireContext());
+                db.analyzeTopicDao().deleteByTopicAndLesson(topicName, lessonName);
+            }).start();
+        }
         textQuestion.setVisibility(View.GONE);
         for (Button btn : choiceButtons) btn.setVisibility(View.GONE);
         buttonSkip.setVisibility(View.GONE);

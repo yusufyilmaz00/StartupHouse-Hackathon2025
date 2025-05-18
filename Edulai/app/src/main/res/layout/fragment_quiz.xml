@@ -97,5 +97,16 @@
             android:text="Doğru: 0 | Yanlış: 0 | Boş: 0"
             android:textSize="16sp"
             android:textColor="#444444" />
+
+        <Button
+            android:id="@+id/button_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kapat"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            android:layout_marginTop="24dp"/>
+
     </LinearLayout>
 </LinearLayout>
